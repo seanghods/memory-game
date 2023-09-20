@@ -5,9 +5,9 @@ export default function Header() {
   return (
     <header>
       <h1>
-        Poke <span className="white"> Find</span>
+        Poke <span className="white"> Find</span>{' '}
+        <img src={pokeball} alt="Pic of Pokeball" />
       </h1>
-      <img src={pokeball} alt="Pic of Pokeball" />
     </header>
   );
 }

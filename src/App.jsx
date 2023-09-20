@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
+import Header from './components/header';
+import Scoreboard from './components/Scoreboard';
 import LoadingScreen from './components/LoadingScreen';
 import CardScreen from './components/CardScreen';
-import Header from './components/header';
 import './css/App.css';
 
 function App() {
   const [pokeArray, setPokeArray] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [score, setScore] = useState(0);
   useEffect(() => {
     async function getPokemon(number) {
       const response = await fetch(
@@ -30,7 +32,9 @@ function App() {
       let arr = [];
       pokemons.forEach(pokemon => {
         arr.push({
-          name: pokemon.forms[0].name,
+          name:
+            pokemon.forms[0].name.charAt(0).toUpperCase() +
+            pokemon.forms[0].name.slice(1),
           img: pokemon.sprites.front_default,
         });
       });
@@ -43,7 +47,14 @@ function App() {
   return (
     <>
       <Header />
-      {loading ? <LoadingScreen /> : <CardScreen pokeArray={pokeArray} />}
+      {loading ? (
+        <LoadingScreen />
+      ) : (
+        <>
+          <Scoreboard score={score} />
+          <CardScreen pokeArray={pokeArray} />
+        </>
+      )}
     </>
   );
 }

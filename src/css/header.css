@@ -9,7 +9,7 @@ header h1 {
   margin: 0;
   padding: 15px;
   color: red;
-  font-size: 75px;
+  font-size: 65px;
 }
 
 .white {
@@ -17,5 +17,5 @@ header h1 {
 }
 
 header img {
-  height: 75%;
+  height: 70px;
 }

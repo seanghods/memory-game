@@ -1,0 +1,13 @@
+.scoreboard {
+  text-align: center;
+  color: red;
+  font-size: 30px;
+}
+
+.white {
+  color: white;
+}
+
+.scoreboard h3 {
+  margin-bottom: 0px;
+}
