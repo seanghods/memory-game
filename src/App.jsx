@@ -121,7 +121,11 @@ function App() {
               score={score}
               highScore={highScore}
             />
-            <CardScreen pokeArray={pokeArray} clickPokemon={clickPokemon} />
+            <CardScreen
+              pokeArray={pokeArray}
+              clickPokemon={clickPokemon}
+              isGameOver={gameOver}
+            />
           </>
         )
       ) : (
