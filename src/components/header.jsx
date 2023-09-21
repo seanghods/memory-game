@@ -1,4 +1,4 @@
-import '../css/header.css';
+import '../css/Header.css';
 import pokeball from '../assets/pokeball.png';
 
 export default function Header({ mute, isMuted }) {

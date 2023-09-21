@@ -13,17 +13,21 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
+  const [gameStarted, setGameStarted] = useState(false);
   const [gameOver, setGameOver] = useState(false);
   const [isWinner, setIsWinner] = useState(false);
   const [reset, setReset] = useState(0);
-  const [gameStarted, setGameStarted] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
+  const [isError, setIsError] = useState(false);
   const songRef = useRef(null);
   useEffect(() => {
     async function getPokemon(number) {
       const response = await fetch(
         `https://pokeapi.co/api/v2/pokemon/${number}`,
       );
+      if (!response.ok) {
+        setIsError(true);
+      }
       const data = await response.json();
       return data;
     }
@@ -51,7 +55,6 @@ function App() {
       });
       setPokeArray(arr);
       setTimeout(() => setLoading(false), 1000);
-      // setLoading(false);
     }
     fetchPokemon();
   }, [reset]);
@@ -110,7 +113,7 @@ function App() {
       <Header mute={toggleMute} isMuted={isMuted} />
       {gameStarted ? (
         loading ? (
-          <LoadingScreen />
+          <LoadingScreen error={isError} />
         ) : (
           <>
             <Scoreboard
