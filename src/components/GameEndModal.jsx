@@ -1,6 +1,6 @@
 import '../css/GameEndModal.css';
 
-export default function GameEnd({ isWinner }) {
+export default function GameEnd({ isWinner, restart }) {
   return (
     <div className="game-over">
       <h3>Game Over!</h3>
@@ -12,7 +12,7 @@ export default function GameEnd({ isWinner }) {
       ) : (
         <p>You failed to catch a unique Pokemon with that last catch!</p>
       )}
-      <button>Restart!</button>
+      <button onClick={restart}>Restart!</button>
     </div>
   );
 }

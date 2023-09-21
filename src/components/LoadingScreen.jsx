@@ -6,7 +6,7 @@ export default function LoadingScreen() {
     <div className="loading-screen">
       <p>
         <img src={pokeball} alt="Pic of Pokeball" />
-        Loading Game!
+        Loading Game
         <img src={pokeball} alt="Pic of Pokeball" />
       </p>
     </div>

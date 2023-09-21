@@ -1,16 +1,18 @@
 .container {
   display: flex;
   align-items: center;
+  justify-content: center;
   flex: 1;
+  width: 100%;
 }
 
 .card-area {
   display: flex;
   flex-direction: column;
   margin: 25px;
-  flex: 1;
-  margin: 10%;
+  width: 75%;
   gap: 15px;
+  margin-bottom: 100px;
 }
 
 .card-row {
@@ -50,5 +52,11 @@
 @media only screen and (min-width: 600px) {
   .card {
     flex: 1;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .container {
+    width: 100%;
   }
 }

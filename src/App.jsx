@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Header from './components/header';
+import StartScreen from './components/StartScreen';
 import Scoreboard from './components/Scoreboard';
 import LoadingScreen from './components/LoadingScreen';
 import CardScreen from './components/CardScreen';
@@ -10,8 +11,11 @@ function App() {
   const [pokeArray, setPokeArray] = useState([]);
   const [loading, setLoading] = useState(false);
   const [score, setScore] = useState(0);
-  const [gameOver, setGameOver] = useState(true);
+  const [highScore, setHighScore] = useState(0);
+  const [gameOver, setGameOver] = useState(false);
   const [isWinner, setIsWinner] = useState(false);
+  const [reset, setReset] = useState(0);
+  const [gameStarted, setGameStarted] = useState(false);
   useEffect(() => {
     async function getPokemon(number) {
       const response = await fetch(
@@ -47,7 +51,7 @@ function App() {
       // setLoading(false);
     }
     fetchPokemon();
-  }, []);
+  }, [reset]);
   function randomizePokemon(pokeArray) {
     const arrCopy = [...pokeArray];
     for (let i = arrCopy.length - 1; i > 0; i--) {
@@ -64,24 +68,43 @@ function App() {
       setScore(score => score + 1);
       if (score == pokeArray.length) {
         //Game Win
+        if (score > highScore) setHighScore(score);
+        setGameOver(true);
+        setIsWinner(true);
       }
       randomizePokemon(pokeArray);
     } else {
       //Game Lose
+      if (score > highScore) setHighScore(score);
+      setGameOver(true);
     }
+  }
+  function restart() {
+    setGameOver(false);
+    setIsWinner(false);
+    setScore(0);
+    setReset(reset => reset + 1);
+  }
+  function startGame() {
+    setGameStarted(true);
+    setReset(reset => reset + 1);
   }
   return (
     <>
       <Header />
-      {loading ? (
-        <LoadingScreen />
+      {gameStarted ? (
+        loading ? (
+          <LoadingScreen />
+        ) : (
+          <>
+            <Scoreboard score={score} highScore={highScore} />
+            <CardScreen pokeArray={pokeArray} clickPokemon={clickPokemon} />
+          </>
+        )
       ) : (
-        <>
-          <Scoreboard score={score} />
-          <CardScreen pokeArray={pokeArray} clickPokemon={clickPokemon} />
-        </>
+        <StartScreen startGame={startGame} />
       )}
-      {gameOver ? <GameEnd isWinner={isWinner} /> : null}
+      {gameOver ? <GameEnd isWinner={isWinner} restart={restart} /> : null}
     </>
   );
 }

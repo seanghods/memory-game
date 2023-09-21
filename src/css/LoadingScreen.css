@@ -6,8 +6,9 @@
 }
 
 .loading-screen p {
+  text-align: center;
   font-size: 75px;
-  color: lightgrey;
+  color: black;
 }
 
 p img {
