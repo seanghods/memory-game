@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  height: 100%;
+  min-height: 100vh;
   font-family: Helvetica, Arial, sans-serif;
   background-image: url('../assets/pokebg.png');
   background-repeat: no-repeat;
@@ -10,7 +10,7 @@ body {
 }
 
 #root {
-  height: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
