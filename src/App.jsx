@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Header from './components/header';
 import StartScreen from './components/StartScreen';
 import Scoreboard from './components/Scoreboard';
 import LoadingScreen from './components/LoadingScreen';
 import CardScreen from './components/CardScreen';
 import GameEnd from './components/GameEndModal';
+import pokesong from './assets/pokesong.mp3';
 import './css/App.css';
 
 function App() {
@@ -16,6 +17,8 @@ function App() {
   const [isWinner, setIsWinner] = useState(false);
   const [reset, setReset] = useState(0);
   const [gameStarted, setGameStarted] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
+  const songRef = useRef(null);
   useEffect(() => {
     async function getPokemon(number) {
       const response = await fetch(
@@ -88,16 +91,32 @@ function App() {
   function startGame() {
     setGameStarted(true);
     setReset(reset => reset + 1);
+    playSong();
+  }
+  function playSong() {
+    songRef.current = new Audio(pokesong);
+    songRef.current.volume = 0.1;
+    songRef.current.play();
+  }
+  function toggleMute() {
+    if (songRef.current) {
+      songRef.current.muted = !isMuted;
+      setIsMuted(!isMuted);
+    }
   }
   return (
     <>
-      <Header />
+      <Header mute={toggleMute} isMuted={isMuted} />
       {gameStarted ? (
         loading ? (
           <LoadingScreen />
         ) : (
           <>
-            <Scoreboard score={score} highScore={highScore} />
+            <Scoreboard
+              pokeArray={pokeArray}
+              score={score}
+              highScore={highScore}
+            />
             <CardScreen pokeArray={pokeArray} clickPokemon={clickPokemon} />
           </>
         )
