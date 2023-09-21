@@ -2,7 +2,7 @@ import '../css/GameEndModal.css';
 
 export default function GameEnd({ isWinner, restart }) {
   return (
-    <div className="game-over">
+    <div className={isWinner ? 'game-over winner' : 'game-over loser'}>
       <h3>Game Over!</h3>
       {isWinner ? (
         <p>

@@ -68,8 +68,9 @@ function App() {
       const arrCopy = [...pokeArray];
       arrCopy[e.currentTarget.id].isClicked = true;
       setPokeArray(arrCopy);
-      setScore(score => score + 1);
-      if (score == pokeArray.length) {
+      const newScore = score + 1;
+      setScore(newScore);
+      if (newScore == pokeArray.length) {
         //Game Win
         if (score > highScore) setHighScore(score);
         setGameOver(true);

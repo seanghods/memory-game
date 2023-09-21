@@ -47,14 +47,6 @@
   padding: 30px;
   padding-top: 10px;
   border-radius: 10px;
-  background: linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(250, 250, 250, 1) 0%,
-    rgba(245, 105, 106, 1) 100%,
-    rgba(255, 109, 109, 1) 100%
-  );
-
   min-width: 30%;
   min-height: 15%;
 }
@@ -98,4 +90,23 @@
   to {
     transform: translateY(-50%, -50%);
   }
+}
+
+.winner {
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(208, 255, 252, 1) 0%,
+    rgba(33, 145, 231, 1) 100%
+  );
+}
+
+.loser {
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(250, 250, 250, 1) 0%,
+    rgba(245, 105, 106, 1) 100%,
+    rgba(255, 109, 109, 1) 100%
+  );
 }
