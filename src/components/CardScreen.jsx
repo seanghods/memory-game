@@ -16,16 +16,17 @@ export default function CardScreen({ pokeArray, clickPokemon, isGameOver }) {
         onClick={e => clickPokemon(e, pokeArray)}
         key={pokemon.name}
       >
-        <h3>
-          {isGameOver && pokemon.isClicked ? (
-            <>
-              <img className="pokeball" src={pokeball} alt="Pic of Pokeball" />
-              {'Caught! ' + pokemon.name}
-            </>
-          ) : (
-            pokemon.name
-          )}
-        </h3>
+        {isGameOver && pokemon.isClicked ? (
+          <>
+            <img className="pokeball" src={pokeball} alt="Pic of Pokeball" />
+            <h3>
+              <p>Caught!</p>
+              <p>{pokemon.name}</p>
+            </h3>
+          </>
+        ) : (
+          pokemon.name
+        )}
         <img draggable={false} src={pokemon.img} alt={pokemon.name} />
       </button>
     );
