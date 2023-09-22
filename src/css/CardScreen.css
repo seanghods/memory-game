@@ -54,15 +54,25 @@
   width: 80%;
 }
 
+.card .pokeball {
+  width: 50%;
+}
+
 @media only screen and (max-width: 600px) {
   .container {
     width: 100%;
+  }
+
+  .card {
+    flex: 0;
+    min-width: 40%;
   }
   .card .pokeball {
     width: 50%;
   }
   .card-area {
     width: 90%;
+    height: 100%;
   }
 }
 

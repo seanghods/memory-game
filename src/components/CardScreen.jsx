@@ -25,7 +25,7 @@ export default function CardScreen({ pokeArray, clickPokemon, isGameOver }) {
             </h3>
           </>
         ) : (
-          pokemon.name
+          <h3>{pokemon.name}</h3>
         )}
         <img draggable={false} src={pokemon.img} alt={pokemon.name} />
       </button>
@@ -41,7 +41,7 @@ export default function CardScreen({ pokeArray, clickPokemon, isGameOver }) {
         </div>
         <div className="card-row">
           {pokeArraySecondHalf.map((pokemon, index) =>
-            renderPokemon(pokemon, index),
+            renderPokemon(pokemon, index + 6),
           )}
         </div>
       </div>
